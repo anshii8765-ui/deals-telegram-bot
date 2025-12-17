@@ -1,6 +1,8 @@
+import os
 from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 
-TOKEN = "8556188183:AAHcexoCysN-GYDiCTRf6XkHLlOWtRjyj_k"
+# Bot token will come from Render environment variable
+TOKEN = os.getenv("BOT_TOKEN")
 
 def start(update, context):
     update.message.reply_text("Hi 👋 I am alive!")
@@ -8,11 +10,15 @@ def start(update, context):
 def reply(update, context):
     update.message.reply_text("You said: " + update.message.text)
 
-updater = Updater(TOKEN, use_context=True)
-dp = updater.dispatcher
+def main():
+    updater = Updater(TOKEN, use_context=True)
+    dp = updater.dispatcher
 
-dp.add_handler(CommandHandler("start", start))
-dp.add_handler(MessageHandler(Filters.text & ~Filters.command, reply))
+    dp.add_handler(CommandHandler("start", start))
+    dp.add_handler(MessageHandler(Filters.text & ~Filters.command, reply))
 
-updater.start_polling()
-updater.idle()
+    updater.start_polling()
+    updater.idle()
+
+if __name__ == "__main__":
+    main()
