@@ -1,2 +1,4 @@
-# deals-telegram-bot
-Telegram bot that sends deals and price updates for electronics, gold and silver automatically.
+# Deals Posting Telegram Bot
+
+A Telegram bot that sends deal updates for electronics, gold, and silver.
+
